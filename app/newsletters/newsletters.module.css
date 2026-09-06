@@ -1,0 +1,93 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.select {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--bg-raised);
+  color: var(--fg);
+  max-width: 22rem;
+  min-height: 2.75rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.viewer {
+  display: block;
+  width: 100%;
+  height: min(80vh, 900px);
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+}
+
+.fallback {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.archiveHeading {
+  margin-top: 2.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.5rem;
+}
+
+.archiveNote {
+  color: var(--fg-muted);
+  margin: 0.4rem 0 1rem;
+}
+
+.archiveYear {
+  margin-bottom: 1.25rem;
+}
+
+.archiveYear h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.archiveList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.archiveList li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.inlineLink {
+  font: inherit;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+.inlineLink:hover {
+  color: var(--accent-hover);
+}
