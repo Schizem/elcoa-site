@@ -37,7 +37,21 @@ When exporting from Word / Docs / your layout tool:
 - Use real heading styles, not just big bold text.
 - Add alt text to images.
 - Export as a **tagged PDF** ("PDF/A" or "best for accessibility").
-- Keep it under ~5 MB if you can — large PDFs are slow on phones.
+
+### Shrink it first
+
+Newsletters straight out of Word are often 20&ndash;40 MB. Run them through the
+bundled compressor before committing &mdash; it downsamples the photos and keeps
+the text selectable:
+
+```bash
+pip install pymupdf pillow          # one time
+python scripts/compress-newsletter.py "September 2026 Newsletter.pdf"
+```
+
+That writes `September 2026 Newsletter-web.pdf` (typically 3&ndash;8 MB). Rename it
+to `2026-09-september.pdf` and put that in `public/newsletters/`. The 27 existing
+issues were compressed this way; originals are kept off the repo.
 
 ## Add event photos
 
