@@ -25,23 +25,25 @@ export default function ProjectsPage() {
 
       <h2>Fish stocking</h2>
       <p>
-        Frank DeVuono coordinates fish planting. Fish go in once the water cools
-        to about 55&deg;F, so stocking happens in the fall.
+        Frank DeVuono coordinates fish planting. The lake is stocked about every
+        other year, in the fall, once the water cools to about 55&deg;F.
       </p>
       <ul>
         <li>
-          <strong>Fall 2024:</strong> nearly 1,000 crappie and walleye were
-          stocked, paid for by $1,911 in donations from residents plus $500 from
-          ELCOA.
+          <strong>Fall 2026 (planned):</strong> fish are in this year&rsquo;s
+          budget. As of the August 2 board meeting the fish fund stood at $1,900,
+          and Frank is getting pricing. Donations are still welcome.
         </li>
         <li>
-          <strong>2025:</strong> no stocking was planned; the next planting was
-          set for fall 2026.
+          <strong>Fall 2024:</strong> nearly 1,000 crappie and walleye, paid for
+          by $1,911 in donations from residents plus $500 from ELCOA.
         </li>
         <li>
-          <strong>2026:</strong> fish are in this year&rsquo;s budget. As of the
-          August 2 board meeting the fish fund stood at $1,900, and Frank is
-          getting pricing for a fall planting.
+          <strong>Fall 2022:</strong> about 900 perch and crappie, planted in
+          early November.
+        </li>
+        <li>
+          <strong>Fall 2020:</strong> 150 walleye and 225 crappie.
         </li>
       </ul>
       <p>
