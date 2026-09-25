@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getIssueSlugs } from "@/lib/issues";
 import { newsletters } from "@/lib/newsletters";
 import { NewsletterBrowser } from "./NewsletterBrowser";
 
@@ -16,7 +17,7 @@ export default function NewslettersPage() {
         The seasonal newsletter of ELCOA. Choose an edition to read it here, or
         open it in a new tab to download.
       </p>
-      <NewsletterBrowser newsletters={newsletters} />
+      <NewsletterBrowser newsletters={newsletters} webEditions={getIssueSlugs()} />
     </div>
   );
 }

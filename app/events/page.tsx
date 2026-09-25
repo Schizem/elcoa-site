@@ -1,57 +1,56 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { UpcomingEvents } from "@/components/UpcomingEvents";
+import { getAllEvents, getAllIssues } from "@/lib/issues";
 
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "Elbow Lake community events: board meetings, the boat parade, annual picnic, hayride, and photos from past gatherings.",
+    "Upcoming Elbow Lake community events and board meetings, plus annual traditions and photos from past gatherings.",
 };
 
+const BUILT_ON = new Date().toISOString().slice(0, 10);
+
 export default function EventsPage() {
+  const events = getAllEvents().filter((e) => e.date >= BUILT_ON);
+  const recaps = getAllIssues().filter((i) => i.cover);
+
   return (
-    <div className="prose-wrap prose">
+    <div className="prose-wrap">
       <h1 className="page-title">Events</h1>
       <p className="page-lead">
-        Board meetings are open to the public and everyone is welcome. Photo
-        galleries from recent events are on the way.
+        Board meetings are open to the public and everyone is welcome. Dates come
+        from the latest issue of the Chatter.
       </p>
 
-      <h2>2026 dates to remember</h2>
-      <ul>
-        <li>
-          <strong>July 4</strong> &mdash; Board meeting 10:00 a.m.; parade
-          registration and flare sales 11:00 a.m.; boat parade 8:00 p.m.
-        </li>
-        <li>
-          <strong>August 1</strong> &mdash; Annual meeting 10:00 a.m.; annual
-          picnic 12:00 p.m.
-        </li>
-        <li>
-          <strong>August 2</strong> &mdash; Board meeting 10:00 a.m.
-        </li>
-        <li>
-          <strong>September 5</strong> &mdash; Board meeting 10:00 a.m.
-        </li>
-        <li>
-          <strong>October 10</strong> &mdash; Board meeting 10:00 a.m.; hayride
-          (time to be announced).
-        </li>
-      </ul>
+      <section className="card" aria-labelledby="upcoming">
+        <h2 id="upcoming" className="side-title">
+          Upcoming
+        </h2>
+        <UpcomingEvents events={events} builtOn={BUILT_ON} />
+      </section>
 
-      <h2>Annual traditions</h2>
-      <ul>
-        <li>Spring and fall neighborhood cleanups</li>
-        <li>Memorial Day golf cart &amp; ATV parade</li>
-        <li>Fourth of July boat parade, flares around the lake, and fireworks</li>
-        <li>Annual picnic and membership meeting</li>
-        <li>Halloween bonfire and hayride</li>
-      </ul>
+      <div className="prose">
+        <h2>Annual traditions</h2>
+        <ul>
+          <li>Spring and fall neighborhood cleanups</li>
+          <li>Memorial Day golf cart &amp; ATV parade</li>
+          <li>Fourth of July boat parade, flares around the lake, and fireworks</li>
+          <li>Annual meeting and picnic in August</li>
+          <li>Halloween hayride, trunk-or-treat, and chili cook-off</li>
+        </ul>
 
-      <p>
-        <em>
-          Draft page &mdash; dates confirmed from the July 2026 Chatter; photo
-          galleries still to be added.
-        </em>
-      </p>
+        <h2>Photos &amp; recaps</h2>
+        <ul>
+          {recaps.map((i) => (
+            <li key={i.slug}>
+              <Link href={`/news/${i.slug}/`}>
+                {i.pdf?.title ?? i.date}: {i.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

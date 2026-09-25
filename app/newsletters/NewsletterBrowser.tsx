@@ -6,6 +6,8 @@ import styles from "./newsletters.module.css";
 
 interface Props {
   newsletters: Newsletter[];
+  /** Slugs that also have a web edition at /news/<slug>/. */
+  webEditions?: string[];
 }
 
 function groupByYear(items: Newsletter[]) {
@@ -16,7 +18,7 @@ function groupByYear(items: Newsletter[]) {
   }));
 }
 
-export function NewsletterBrowser({ newsletters }: Props) {
+export function NewsletterBrowser({ newsletters, webEditions = [] }: Props) {
   const groups = useMemo(() => groupByYear(newsletters), [newsletters]);
   const [slug, setSlug] = useState<string>(newsletters[0]?.slug ?? "");
 
@@ -80,6 +82,11 @@ export function NewsletterBrowser({ newsletters }: Props) {
         <a className="button button--ghost" href={current.file} download>
           Download PDF
         </a>
+        {webEditions.includes(current.slug) ? (
+          <a className="button button--ghost" href={`/news/${current.slug}/`}>
+            Read the web version
+          </a>
+        ) : null}
       </div>
 
       {current.summary ? (

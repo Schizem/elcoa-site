@@ -1,13 +1,22 @@
 import Link from "next/link";
-import { newsletters } from "@/lib/newsletters";
+import { IssueArticle } from "@/components/IssueArticle";
+import { LakeMapBanner } from "@/components/LakeMapBanner";
+import { UpcomingEvents } from "@/components/UpcomingEvents";
+import { getAllEvents, getLatestIssue } from "@/lib/issues";
+
+// Evaluated at build time; the client refines "upcoming" to the viewer's today.
+const BUILT_ON = new Date().toISOString().slice(0, 10);
 
 export default function HomePage() {
-  const latest = newsletters[0];
+  const latest = getLatestIssue();
+  const events = getAllEvents().filter((e) => e.date >= BUILT_ON);
 
   return (
     <>
       <section className="hero">
-        <h1>Elbow Lake</h1>
+        {/* The map already shows "Elbow Lake"; the h1 carries it for screen readers. */}
+        <h1 className="sr-only">Elbow Lake Cottage Owners Association</h1>
+        <LakeMapBanner />
         <p>
           A little slice of heaven in Harrison, Michigan. News, events, and the
           seasonal <em>Elbow Lake Chatter</em> from the Elbow Lake Cottage Owners
@@ -15,67 +24,65 @@ export default function HomePage() {
         </p>
       </section>
 
-      <div className="home-grid">
-        <article className="card">
-          <h2>Latest newsletter</h2>
+      <div className="home-layout">
+        <div className="home-main">
           {latest ? (
-            <p>
-              <Link href={`/newsletters?issue=${latest.slug}`}>
-                {latest.title} &mdash; Elbow Lake Chatter
-              </Link>
-            </p>
+            <IssueArticle issue={latest} variant="home" />
           ) : (
-            <p>Newsletters are being migrated over. Check back soon.</p>
+            <p>The latest news is on its way.</p>
           )}
-          <p>
-            <Link href="/newsletters">Browse the full archive &rarr;</Link>
+          <p className="home-more">
+            <Link href="/news/">More news from past issues &rarr;</Link>
           </p>
-        </article>
+        </div>
 
-        <article className="card">
-          <h2>Upcoming events</h2>
-          <p>
-            Board meetings are open to all. See the season&rsquo;s calendar and
-            past event photos.
-          </p>
-          <p>
-            <Link href="/events">Events &amp; photos &rarr;</Link>
-          </p>
-        </article>
+        <aside className="home-side" aria-label="At a glance">
+          <section className="card" aria-labelledby="coming-up">
+            <h2 id="coming-up" className="side-title">
+              Coming up
+            </h2>
+            <UpcomingEvents events={events} builtOn={BUILT_ON} />
+            <p className="side-link">
+              <Link href="/events/">All events &rarr;</Link>
+            </p>
+          </section>
 
-        <article className="card">
-          <h2>Join ELCOA</h2>
-          <p>
-            Annual membership runs August through July and funds lake and
-            neighborhood upkeep.
-          </p>
-          <p>
-            <Link href="/membership">Membership &amp; dues &rarr;</Link>
-          </p>
-        </article>
+          <section className="card" aria-labelledby="join">
+            <h2 id="join" className="side-title">
+              Join ELCOA
+            </h2>
+            <p>
+              Membership runs August through July and funds lake and
+              neighborhood upkeep.
+            </p>
+            <p className="side-link">
+              <Link href="/membership/">Membership &amp; dues &rarr;</Link>
+            </p>
+          </section>
+
+          <section className="card" aria-labelledby="know">
+            <h2 id="know" className="side-title">
+              Good to know
+            </h2>
+            <ul className="side-list">
+              <li>Quiet hours: 10 PM to 7 AM (township ordinance).</li>
+              <li>
+                <Link href="/contact/">Emergency numbers &amp; equipment</Link>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/groups/206299797470224"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Elbow Lake Facebook group
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </aside>
       </div>
-
-      <section className="callout" style={{ marginTop: "2.5rem" }}>
-        <h2 style={{ marginTop: 0 }}>Good to know</h2>
-        <ul style={{ marginBottom: 0, paddingLeft: "1.4rem" }}>
-          <li>Quiet hours are 10:00 p.m. to 7:00 a.m. (township ordinance).</li>
-          <li>
-            Emergency numbers and equipment locations are on the{" "}
-            <Link href="/contact">Contact</Link> page.
-          </li>
-          <li>
-            Community discussion happens in the{" "}
-            <a
-              href="https://www.facebook.com/groups/206299797470224"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Elbow Lake Facebook group
-            </a>
-            .
-          </li>
-        </ul>
-      </section>
     </>
   );
 }

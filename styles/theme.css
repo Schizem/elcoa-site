@@ -17,6 +17,7 @@
   --border: #e2ddd2;
   --focus: #1f6f8b;
   --danger: #9a2b2b;
+  --map-ink: #4a2f1a;         /* the map's original brown */
 
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
@@ -41,6 +42,7 @@
     --border: #2c343c;
     --focus: #6cc5df;
     --danger: #f08a8a;
+    --map-ink: #e3d3bf;
 
     color-scheme: dark;
   }
@@ -59,6 +61,7 @@
   --border: #2c343c;
   --focus: #6cc5df;
   --danger: #f08a8a;
+  --map-ink: #e3d3bf;
 
   color-scheme: dark;
 }

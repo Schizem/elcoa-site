@@ -53,6 +53,64 @@ That writes `September 2026 Newsletter-web.pdf` (typically 3&ndash;8 MB). Rename
 to `2026-09-september.pdf` and put that in `public/newsletters/`. The 27 existing
 issues were compressed this way; originals are kept off the repo.
 
+## Publish the web edition (home page content)
+
+The home page shows the **latest web edition**: the community news, event
+recaps, and photos from the newest issue, written as a web page instead of a
+PDF. Each issue gets one file: `content/issues/<slug>.mdx`, where `<slug>`
+matches the newsletter's entry in `newsletters.json` (e.g. `2026-10`).
+
+1. **Photos** go in `public/issues/<slug>/`. Resize to about 1600 px on the long
+   edge and strip location data (EXIF). Short lowercase names:
+   `sub-crawl-01.jpg`, `cover.jpg`.
+2. **Create `content/issues/<slug>.mdx`:**
+
+   ```mdx
+   ---
+   title: "Fall Fun at the Lake"            # the issue's headline
+   date: "2026-10-01"                        # when the issue went out
+   summary: "One sentence for previews and the newsletter dropdown."
+   cover:
+     src: /issues/2026-10/cover.jpg
+     alt: "Describe the photo for someone who can't see it."
+     credit: Photographer Name              # optional
+   events:                                   # powers "Coming up" + the Events page
+     - date: "2026-10-10"
+       time: "1:00 PM"
+       title: "Hayride, trunk-or-treat & chili cook-off"
+       place: "Boat Launch"                 # optional
+       details: "Cook-off entries due Oct 1." # optional
+   ---
+
+   Opening paragraph...
+
+   ## Community news
+
+   ### A story headline
+
+   Story text. **Bold**, [links](https://example.com), and lists work.
+
+   ## Sub Crawl recap
+
+   <Gallery label="Sub Crawl 2026 photos">
+     <Photo src="/issues/2026-10/sub-crawl-01.jpg" alt="What's in the picture." />
+     <Photo src="/issues/2026-10/sub-crawl-02.jpg" alt="..." caption="Optional caption" />
+   </Gallery>
+
+   <Callout title="Safety">A highlighted reminder.</Callout>
+   ```
+
+   - List same-day events in the order they happen; the site keeps that order.
+   - Past events drop off "Coming up" automatically, in each visitor's browser.
+   - Every `<Photo>` needs `alt` text.
+3. Commit. The newest `date` becomes the home page; older issues stay at
+   `/news/<slug>/`, and the newsletter dropdown links to them.
+
+**Leave off the web edition:** the contact directory (personal phone numbers
+and emails are easy to scrape from a web page), news photos you don't own
+(link to the source instead), and personal details from the minutes. Summarize
+board decisions only.
+
 ## Add event photos
 
 1. Make a folder `public/events/<event-slug>/` (e.g. `public/events/hayride-2026/`).
