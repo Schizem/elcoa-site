@@ -1,0 +1,37 @@
+{
+  "asOf": "2026-08-02",
+  "officers": [
+    { "role": "President", "name": "Mark Scott" },
+    { "role": "Vice President", "name": "Donnie Patterson" },
+    { "role": "Secretary", "name": "Sally Rouse" },
+    { "role": "Treasurer", "name": "Jonathan Kelly" },
+    { "role": "Membership", "name": "Tonya Patterson" }
+  ],
+  "directors": [
+    "Frank DeVuono",
+    "Ed Henri",
+    "Erie High",
+    "Cassie Kelly",
+    "Angela Kraetke",
+    "John Krieger",
+    "Shirley Miller",
+    "Lucky Mottausch",
+    "Marty Neighbors",
+    "Eric Rouse",
+    "Deb Smith",
+    "Fred VanDeKerkhove",
+    "Lisa Wick",
+    "Mary Ann Wood"
+  ],
+  "committees": [
+    { "role": "Annual Picnic", "names": ["Mary Ann Wood", "Shirley Miller"] },
+    { "role": "Community News & Facebook", "names": ["Deb Smith"] },
+    { "role": "Community Support", "names": ["Blaire Embrey"] },
+    { "role": "Facebook Administrators", "names": ["Rick Elenbaas", "Mark Scott"] },
+    { "role": "Fish Planting & Neighborhood Watch", "names": ["Frank DeVuono"] },
+    { "role": "Hayride", "names": ["Sally Rouse", "Tonya Patterson"] },
+    { "role": "Lake Weed Treatment", "names": ["Mary Ann Wood"] },
+    { "role": "Newsletter & Website", "names": ["Tyler Hay"] },
+    { "role": "Water Testing", "names": ["Charlie Smith"] }
+  ]
+}

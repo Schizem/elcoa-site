@@ -446,6 +446,45 @@ h4 {
   color: var(--fg-muted);
 }
 
+/* Board roster (About page) */
+.roster {
+  margin: 0.5rem 0 0;
+}
+.roster__row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 15rem) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.roster__row dt {
+  color: var(--fg-muted);
+}
+.roster__row dd {
+  font-weight: 600;
+}
+.prose .roster-names {
+  list-style: none;
+  padding: 0;
+  columns: 2 12rem;
+  column-gap: 2rem;
+}
+.prose .roster-names li {
+  margin: 0;
+  padding: 0.3rem 0;
+  break-inside: avoid;
+}
+.roster-asof {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+@media (max-width: 480px) {
+  .roster__row {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}
+
 /* News index */
 .issue-list {
   list-style: none;

@@ -4,6 +4,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 import "@/styles/theme.css";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   // Absolute base for canonical and social-preview URLs.
@@ -60,7 +61,7 @@ export default function RootLayout({
                 Elbow Lake Cottage Owners Association &middot; Harrison, Michigan
               </span>
               <span>
-                <a href="mailto:elbowlakecoa@gmail.com">elbowlakecoa@gmail.com</a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                 {" · "}
                 <a
                   href="https://www.facebook.com/groups/206299797470224"

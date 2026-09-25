@@ -44,6 +44,6 @@ Live at **https://elcoa.org** (repo `Schizem/elcoa-site`).
 - **DNS** (Cloudflare, zone `elcoa.org`), all set to **DNS only** (grey cloud) so
   GitHub can issue and renew the HTTPS certificate. The same records are in
   [`dns/elcoa.org.zone`](./dns/elcoa.org.zone), ready for Cloudflare's
-
+  "Import DNS records".
 - The site serves from the domain root, so there's no `basePath`.
 - The print edition (`/print/...`) is never built here; see MAINTAINING.md.

@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import board from "@/content/board.json";
+import { formatLongDate } from "@/lib/dates";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About ELCOA",
@@ -25,24 +28,51 @@ export default function AboutPage() {
         tree work.
       </p>
 
+      {/* Names and roles only. Personal phone numbers and emails stay in the
+          printed newsletter directory, never on the website. */}
+      <h2>Board of directors</h2>
+      <p>
+        Board meetings are open to everyone; see <a href="/events/">Events</a>{" "}
+        for dates. To reach the board, email{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+
+      <h3>Officers</h3>
+      <dl className="roster">
+        {board.officers.map((o) => (
+          <div key={o.role} className="roster__row">
+            <dt>{o.role}</dt>
+            <dd>{o.name}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <h3>Directors</h3>
+      <ul className="roster-names">
+        {board.directors.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <h3>Committee chairs</h3>
+      <dl className="roster">
+        {board.committees.map((c) => (
+          <div key={c.role} className="roster__row">
+            <dt>{c.role}</dt>
+            <dd>{c.names.join(" & ")}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <p className="roster-asof">
+        As of the {formatLongDate(board.asOf)} board meeting.
+      </p>
+
       <h2>Bylaws</h2>
       <p>
         <a href="/docs/elcoa-bylaws-2024.pdf" target="_blank" rel="noopener noreferrer">
           ELCOA Bylaws and Agreements (2024, PDF)
         </a>
-      </p>
-
-      <h2>Board of directors</h2>
-      <p>
-        <em>
-          Draft: roster to be confirmed against the current membership
-          year before publishing.
-        </em>
-      </p>
-
-      <p>
-        Questions for the board:{" "}
-        <a href="mailto:elbowlakecoa@gmail.com">elbowlakecoa@gmail.com</a>.
       </p>
     </div>
   );

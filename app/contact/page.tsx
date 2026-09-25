@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import emergency from "@/content/emergency.json";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact & Emergency Info",
@@ -17,7 +18,7 @@ export default function ContactPage() {
 
       <h2>Reach ELCOA</h2>
       <p>
-        Email <a href="mailto:elbowlakecoa@gmail.com">elbowlakecoa@gmail.com</a>,
+        Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>,
         or post in the{" "}
         <a
           href="https://www.facebook.com/groups/206299797470224"

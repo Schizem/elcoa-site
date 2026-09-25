@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Membership",
@@ -46,7 +47,7 @@ export default function MembershipPage() {
 
       <p>
         Questions:{" "}
-        <a href="mailto:elbowlakecoa@gmail.com">elbowlakecoa@gmail.com</a>.
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
 
       <p>
