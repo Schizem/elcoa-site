@@ -81,6 +81,14 @@ def main() -> None:
     )
 
     doc = pymupdf.open(pages_pdf)
+    first_page = doc[0].get_text()
+    if "could not be found" in first_page or first_page.strip().startswith("404"):
+        doc.close()
+        pages_pdf.unlink()
+        sys.exit(
+            f"{url} returned 404. Is the dev server running, and was it restarted "
+            "after adding this issue? (New slugs need a restart.)"
+        )
     for rel in append_list(issue_dir / "print.mdx"):
         extra = REPO / "public" / rel
         if extra.exists():
