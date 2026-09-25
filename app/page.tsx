@@ -41,7 +41,7 @@ export default function HomePage() {
             <h2 id="coming-up" className="side-title">
               Coming up
             </h2>
-            <UpcomingEvents events={events} builtOn={BUILT_ON} />
+            <UpcomingEvents events={events} builtOn={BUILT_ON} compact />
             <p className="side-link">
               <Link href="/events/">All events &rarr;</Link>
             </p>

@@ -2,9 +2,16 @@
 
 Everything here can be done from the GitHub web UI or a local clone.
 
+## Writing style
+
+- **No em-dashes (—)** in site copy or the newsletter. Use a colon, period,
+  comma, or parentheses instead. En-dashes for ranges (2026–2027) are fine.
+- Plain, friendly sentences. The readers are neighbors, not a corporate audience.
+- Every photo gets real alt text describing what's in it.
+
 ## Add a new newsletter
 
-1. **Name the PDF** `YYYY-MM-month.pdf` — e.g. `2026-09-september.pdf`. Lower
+1. **Name the PDF** `YYYY-MM-month.pdf`, e.g. `2026-09-september.pdf`. Lower
    case, no spaces.
 2. **Put it in** `public/newsletters/`.
 3. **Add an entry** to the top of `content/newsletters.json`:
@@ -17,7 +24,7 @@ Everything here can be done from the GitHub web UI or a local clone.
      "year": 2026,
      "month": 9,
      "file": "/newsletters/2026-09-september.pdf",
-     "summary": "One or two sentences of highlights. Optional but encouraged — it is the part screen readers and phones read most easily."
+     "summary": "One or two sentences of highlights. Optional but encouraged: it is the part screen readers and phones read most easily."
    }
    ```
 
@@ -152,7 +159,7 @@ folder (see `pageExtensions` in `next.config.ts`), so the CI build never sees it
 ## Update page text
 
 Each page is a file under `app/<route>/page.tsx`. The text is plain HTML-ish
-JSX — edit between the tags and commit.
+JSX. Edit between the tags and commit.
 
 ## Replace a PDF (bylaws, membership form)
 

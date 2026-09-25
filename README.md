@@ -19,7 +19,7 @@ npm run build    # static export into ./out
 | `app/` | Pages (one folder per route) |
 | `app/newsletters/` | Newsletter browser: dropdown + embedded PDF viewer |
 | `components/` | Shared UI (nav, theme toggle) |
-| `content/newsletters.json` | The newsletter archive index — edit this to add an issue |
+| `content/newsletters.json` | The newsletter archive index. Edit this to add an issue |
 | `lib/newsletters.ts` | Typed loader + helpers for the archive |
 | `public/newsletters/` | Newsletter PDFs |
 | `public/docs/` | Other PDFs (bylaws, membership form) |

@@ -38,13 +38,13 @@ export default function ProjectsPage() {
 
       <h2>Trash service</h2>
       <p>
-        GFL collects weekly on Thursdays &mdash; one tote plus two tied bags per
+        GFL collects weekly on Thursdays: one tote plus two tied bags per
         household. Leave four feet of clearance around bins. Lost-bin replacement
         is $50. GFL: 989-588-6000.
       </p>
 
       <p>
-        <em>Draft page &mdash; content carried over from the old site; figures to be refreshed each season.</em>
+        <em>Draft page: content carried over from the old site; figures to be refreshed each season.</em>
       </p>
     </div>
   );

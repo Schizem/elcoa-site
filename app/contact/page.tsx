@@ -26,7 +26,7 @@ export default function ContactPage() {
         >
           Elbow Lake Facebook group
         </a>
-        . Board meetings are open to the public &mdash; see{" "}
+        . Board meetings are open to the public. See{" "}
         <a href="/events/">Events</a> for dates.
       </p>
 
@@ -34,7 +34,7 @@ export default function ContactPage() {
       <ul>
         {emergency.numbers.map((n) => (
           <li key={n.label}>
-            {n.label} &mdash; <a href={`tel:${n.phone}`}>{n.phone}</a>
+            {n.label}: <a href={`tel:${n.phone}`}>{n.phone}</a>
           </li>
         ))}
       </ul>
@@ -44,7 +44,7 @@ export default function ContactPage() {
         {emergency.equipment.flatMap((g) =>
           g.people.map((p) => (
             <li key={`${g.label}-${p.name}`}>
-              <strong>{g.label}</strong> &mdash; {p.name}, {p.address}.{" "}
+              <strong>{g.label}:</strong> {p.name}, {p.address}.{" "}
               {p.phones.map((ph, i) => (
                 <span key={ph}>
                   {i > 0 ? " or " : ""}

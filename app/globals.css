@@ -400,24 +400,47 @@ h4 {
 }
 .event-day__date {
   font-weight: 700;
+  margin-bottom: 0.3rem;
 }
-.event-day__items li {
+/* One event = time column + text column, so wrapped titles stay aligned. */
+.event {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  column-gap: 0.5rem;
+  line-height: 1.35;
+}
+.event + .event {
+  margin-top: 0.5rem;
+}
+.event__time {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.08rem;
+  white-space: nowrap;
+}
+.event__body {
+  display: flex;
+  flex-direction: column;
+}
+.event__title {
+  font-weight: 600;
+}
+.event__place,
+.event__details {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+.event__details {
   margin-top: 0.15rem;
 }
-.event-time {
-  display: inline-block;
-  min-width: 5.5rem;
-  color: var(--fg-muted);
-  font-variant-numeric: tabular-nums;
+/* Sidebar: a little tighter. */
+.event-days--compact .event {
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  font-size: 0.95rem;
 }
-.event-place {
-  color: var(--fg-muted);
-}
-.event-details {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--fg-muted);
-  margin-left: 5.5rem;
+.event-days--compact .event + .event {
+  margin-top: 0.4rem;
 }
 .events-empty {
   color: var(--fg-muted);
@@ -448,9 +471,6 @@ h4 {
 @media (max-width: 480px) {
   .issue-list__item {
     grid-template-columns: 1fr;
-  }
-  .event-details {
-    margin-left: 0;
   }
 }
 

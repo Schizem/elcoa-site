@@ -50,7 +50,7 @@ export default function MembershipPage() {
       </p>
 
       <p>
-        <em>Draft page &mdash; verify the current dues year and mailing address before publishing.</em>
+        <em>Draft page: verify the current dues year and mailing address before publishing.</em>
       </p>
     </div>
   );

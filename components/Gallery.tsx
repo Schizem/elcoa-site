@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
  *     <Photo src="/issues/2026-07/memorial-day-01.jpg" alt="..." />
  *   </Gallery>
  *
- * Each thumbnail links to the full-size image. `alt` is required — describe
+ * Each thumbnail links to the full-size image. `alt` is required: describe
  * what's in the picture, not "photo of".
  */
 export function Gallery({

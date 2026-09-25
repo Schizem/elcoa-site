@@ -9,6 +9,8 @@ interface Props {
   /** Build date ("YYYY-MM-DD"); used until the browser tells us today's date. */
   builtOn: string;
   emptyText?: string;
+  /** Narrow sidebar: hide the longer `details` text. */
+  compact?: boolean;
 }
 
 /**
@@ -16,7 +18,7 @@ interface Props {
  * renders events from the build date onward, then the client trims anything
  * that has since passed.
  */
-export function UpcomingEvents({ events, builtOn, emptyText }: Props) {
+export function UpcomingEvents({ events, builtOn, emptyText, compact = false }: Props) {
   const [today, setToday] = useState(builtOn);
   useEffect(() => setToday(localToday()), []);
 
@@ -34,7 +36,7 @@ export function UpcomingEvents({ events, builtOn, emptyText }: Props) {
   const days = [...new Set(upcoming.map((e) => e.date))];
 
   return (
-    <ul className="event-days">
+    <ul className={`event-days${compact ? " event-days--compact" : ""}`}>
       {days.map((day) => (
         <li key={day} className="event-day">
           <p className="event-day__date">
@@ -44,11 +46,15 @@ export function UpcomingEvents({ events, builtOn, emptyText }: Props) {
             {upcoming
               .filter((e) => e.date === day)
               .map((e) => (
-                <li key={`${e.title}-${e.time ?? ""}`}>
-                  {e.time ? <span className="event-time">{e.time}</span> : null}
-                  <span className="event-title">{e.title}</span>
-                  {e.place ? <span className="event-place"> &middot; {e.place}</span> : null}
-                  {e.details ? <span className="event-details">{e.details}</span> : null}
+                <li key={`${e.title}-${e.time ?? ""}`} className="event">
+                  <span className="event__time">{e.time ?? ""}</span>
+                  <span className="event__body">
+                    <span className="event__title">{e.title}</span>
+                    {e.place ? <span className="event__place">{e.place}</span> : null}
+                    {!compact && e.details ? (
+                      <span className="event__details">{e.details}</span>
+                    ) : null}
+                  </span>
                 </li>
               ))}
           </ul>

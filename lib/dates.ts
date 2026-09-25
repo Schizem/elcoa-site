@@ -1,4 +1,4 @@
-// Pure date helpers — safe to import from both server and client components.
+// Pure date helpers, safe to import from both server and client components.
 // Event dates are plain "YYYY-MM-DD" strings (no time zone). We format them in
 // UTC so a July 4 date never renders as July 3 on a machine west of Greenwich.
 
@@ -6,7 +6,7 @@ function toUTC(date: string): Date {
   return new Date(`${date}T00:00:00Z`);
 }
 
-/** "Saturday, July 4" — or "Saturday, July 4, 2026" with `withYear`. */
+/** "Saturday, July 4", or "Saturday, July 4, 2026" with `withYear`. */
 export function formatEventDate(date: string, withYear = false): string {
   return toUTC(date).toLocaleDateString("en-US", {
     timeZone: "UTC",

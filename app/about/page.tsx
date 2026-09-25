@@ -19,9 +19,9 @@ export default function AboutPage() {
       <p>
         ELCOA represents property owners around Elbow Lake in Harrison, Michigan.
         The association works to protect water quality, keep the neighborhood
-        safe and attractive, and support shared amenities &mdash; docks, the boat
+        safe and attractive, and support shared amenities (docks, the boat
         ramp, the swim area, playground equipment, security lighting, and
-        emergency equipment &mdash; along with seasonal lake weed treatment and
+        emergency equipment), along with seasonal lake weed treatment and
         tree work.
       </p>
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
       <h2>Board of directors</h2>
       <p>
         <em>
-          Draft &mdash; roster to be confirmed against the current membership
+          Draft: roster to be confirmed against the current membership
           year before publishing.
         </em>
       </p>
