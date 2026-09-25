@@ -6,6 +6,8 @@ import "./globals.css";
 import "@/styles/theme.css";
 
 export const metadata: Metadata = {
+  // Absolute base for canonical and social-preview URLs.
+  metadataBase: new URL("https://elcoa.org"),
   title: {
     default: "Elbow Lake Cottage Owners Association",
     template: "%s | ELCOA",

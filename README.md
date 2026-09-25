@@ -36,6 +36,25 @@ See [MAINTAINING.md](./MAINTAINING.md).
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs
 `npm run build` and publishes `out/` to GitHub Pages.
 
-Custom domain: add a `public/CNAME` file containing the domain, set the domain in
-the repo's **Settings → Pages**, and point DNS at GitHub Pages. With a custom
-domain the site serves from the root, so no `basePath` is needed.
+Live at **https://elcoa.org** (repo `Schizem/elcoa-site`).
+
+- **Pages settings** (repo Settings → Pages): Source = GitHub Actions, Custom
+  domain = `elcoa.org`, Enforce HTTPS on. With an Actions deploy, GitHub ignores
+  any `CNAME` file; the domain lives in these settings.
+- **DNS** (Cloudflare, zone `elcoa.org`), all set to **DNS only** (grey cloud) so
+  GitHub can issue and renew the HTTPS certificate:
+
+  | Type | Name | Value |
+  | --- | --- | --- |
+  | A | `@` | `185.199.108.153` |
+  | A | `@` | `185.199.109.153` |
+  | A | `@` | `185.199.110.153` |
+  | A | `@` | `185.199.111.153` |
+  | AAAA | `@` | `2606:50c0:8000::153` |
+  | AAAA | `@` | `2606:50c0:8001::153` |
+  | AAAA | `@` | `2606:50c0:8002::153` |
+  | AAAA | `@` | `2606:50c0:8003::153` |
+  | CNAME | `www` | `schizem.github.io` |
+
+- The site serves from the domain root, so there's no `basePath`.
+- The print edition (`/print/...`) is never built here; see MAINTAINING.md.
