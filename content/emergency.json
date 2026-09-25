@@ -1,0 +1,25 @@
+{
+  "numbers": [
+    { "label": "Sheriff", "phone": "989-539-7166" },
+    { "label": "Fire Department", "phone": "989-539-7145" }
+  ],
+  "equipment": [
+    {
+      "label": "Oxygen",
+      "people": [
+        { "name": "Mary Ann Wood", "address": "10385 N. Athey Ave.", "phones": ["989-274-4315"] },
+        { "name": "Frank DeVuono", "address": "9982 South Shore", "phones": ["586-482-0907"] }
+      ]
+    },
+    {
+      "label": "Emergency walkie-talkies, oxygen and AED",
+      "people": [
+        {
+          "name": "Charlie and Deb Smith",
+          "address": "9895 Toohy Trail",
+          "phones": ["989-560-5811", "989-424-8633"]
+        }
+      ]
+    }
+  ]
+}

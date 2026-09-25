@@ -111,6 +111,38 @@ and emails are easy to scrape from a web page), news photos you don't own
 (link to the source instead), and personal details from the minutes. Summarize
 board decisions only.
 
+## Make the print newsletter (PDF)
+
+The same web edition can also produce a Chatter-style PDF. Print-only material
+(full minutes, the contact directory, a flyer page) lives **outside this repo**
+in `../newsletter-print/<slug>/` so personal phone numbers and emails never get
+committed or deployed:
+
+```
+newsletter-print/<slug>/
+  print.mdx        front matter: tagline, flyer, omitSections, appendPdfs;
+                   body: the full board minutes (Markdown)
+  directory.json   contact directory groups (officers / directors / chairs)
+```
+
+See `newsletter-print/2026-07/` for a complete example. Then, with `npm run dev`
+running:
+
+```bash
+python scripts/print-issue.py 2026-10
+```
+
+That prints `/print/2026-10/` with headless Chrome, appends the PDFs listed in
+`appendPdfs` (e.g. the membership form), and writes
+`newsletter-print/<slug>/<slug>-chatter.pdf`. Compress it with
+`scripts/compress-newsletter.py` before adding it to `public/newsletters/`.
+
+The print route only exists on a machine that has the `newsletter-print`
+folder (see `pageExtensions` in `next.config.ts`), so the CI build never sees it.
+
+"You Need to Know" (the cover sidebar) and the Contact page both read
+`content/emergency.json`.
+
 ## Add event photos
 
 1. Make a folder `public/events/<event-slug>/` (e.g. `public/events/hayride-2026/`).

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import emergency from "@/content/emergency.json";
 
 export const metadata: Metadata = {
   title: "Contact & Emergency Info",
   description:
     "How to reach ELCOA, plus emergency phone numbers and the location of shared oxygen, AED, and radio equipment around Elbow Lake.",
 };
+
+// Emergency info lives in content/emergency.json, shared with the newsletter's
+// "You Need to Know" sidebar so the two never drift apart.
 
 export default function ContactPage() {
   return (
@@ -28,32 +32,32 @@ export default function ContactPage() {
 
       <h2>Emergency numbers</h2>
       <ul>
-        <li>Sheriff &mdash; 989-539-7166</li>
-        <li>Fire Department &mdash; 989-539-7145</li>
+        {emergency.numbers.map((n) => (
+          <li key={n.label}>
+            {n.label} &mdash; <a href={`tel:${n.phone}`}>{n.phone}</a>
+          </li>
+        ))}
       </ul>
 
       <h2>Shared equipment around the lake</h2>
       <ul>
-        <li>
-          <strong>Walkie-talkies, oxygen &amp; AED</strong> &mdash; Charlie &amp;
-          Deb Smith, 9895 Toohy Trail. 989-560-5811 or 989-424-8633.
-        </li>
-        <li>
-          <strong>Oxygen</strong> &mdash; Mary Ann Wood, 10385 N. Athey Ave.
-          989-274-4315.
-        </li>
-        <li>
-          <strong>Oxygen</strong> &mdash; Frank DeVuono, 9982 South Shore.
-          586-482-0907.
-        </li>
+        {emergency.equipment.flatMap((g) =>
+          g.people.map((p) => (
+            <li key={`${g.label}-${p.name}`}>
+              <strong>{g.label}</strong> &mdash; {p.name}, {p.address}.{" "}
+              {p.phones.map((ph, i) => (
+                <span key={ph}>
+                  {i > 0 ? " or " : ""}
+                  <a href={`tel:${ph}`}>{ph}</a>
+                </span>
+              ))}
+            </li>
+          )),
+        )}
       </ul>
 
       <h2>Quiet hours</h2>
       <p>10:00 p.m. to 7:00 a.m., per township ordinance.</p>
-
-      <p>
-        <em>Draft page &mdash; confirm names, addresses, and numbers with the board before publishing.</em>
-      </p>
     </div>
   );
 }
