@@ -16,9 +16,13 @@ export const PRINT_ROOT = path.join(process.cwd(), "..", "newsletter-print");
 export interface Flyer {
   kicker: string;
   headline: string;
+  /** Small caps line between the headline and `when`, e.g. "The parade is". */
+  label?: string;
   when: string;
   lines: string[];
   footer?: string;
+  /** "front" = page 2 (default), "back" = last page before appended PDFs. */
+  position?: "front" | "back";
 }
 
 export interface DirectoryPerson {

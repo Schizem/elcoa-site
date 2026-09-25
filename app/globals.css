@@ -381,6 +381,7 @@ h4 {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: 50% 30%;
   border-radius: 6px;
 }
 .gallery a:hover img {

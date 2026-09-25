@@ -90,6 +90,21 @@
   object-fit: cover;
   display: block;
 }
+/* Scrims behind the date (top right) and masthead (bottom) so white type
+   stays readable on a bright sky. */
+.nl-cover__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 45% 40% at 100% 0%, rgba(0, 0, 0, 0.45), transparent 70%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent 35%);
+  pointer-events: none;
+}
+.nl-cover__date,
+.nl-cover__masthead {
+  z-index: 1;
+}
 .nl-cover__date {
   position: absolute;
   top: 0.18in;
@@ -217,9 +232,6 @@
   max-width: 6.2in;
   margin-inline: auto;
 }
-.nl-flyer__line:nth-of-type(n + 5) {
-  color: #c8102e;
-}
 .nl-flyer__footer {
   color: #1c55b8;
   font-family: var(--nl-display), system-ui, sans-serif;
@@ -316,6 +328,7 @@
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: 50% 30%;
   border-radius: 0;
   display: block;
 }
@@ -383,7 +396,7 @@
 
 .nl-dir__list {
   padding: 0.06in 0.12in;
-  font-size: 9.5pt;
+  font-size: 9pt;
   line-height: 1.2;
 }
 .nl-dir__row {
@@ -391,7 +404,7 @@
   grid-template-columns: 2.35in 1.05in 1fr;
   gap: 0.08in;
   align-items: end;
-  padding: 0.028in 0;
+  padding: 0.012in 0;
 }
 .nl-dir__role {
   display: block;

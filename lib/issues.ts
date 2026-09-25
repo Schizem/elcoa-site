@@ -83,17 +83,23 @@ export function getIssueSlugs(): string[] {
 }
 
 /**
- * Every dated event across all issues, oldest first. If two issues list the
- * same date + title, the newer issue's entry wins (it has the latest details).
+ * Every dated event across all issues, oldest first. The newest issue that
+ * lists a given date owns that whole day: older issues' entries for the same
+ * date are dropped (e.g. July's "Hayride, TBA" gives way to October's full
+ * schedule for Oct 10).
  */
 export function getAllEvents(): (IssueEvent & { issue: string })[] {
-  const byKey = new Map<string, IssueEvent & { issue: string }>();
-  for (const issue of [...getAllIssues()].reverse()) {
+  const claimed = new Set<string>();
+  const out: (IssueEvent & { issue: string })[] = [];
+  for (const issue of getAllIssues()) {
+    // newest first
+    const days = new Set(issue.events.map((e) => e.date));
     for (const e of issue.events) {
-      byKey.set(`${e.date}|${e.title}|${e.time ?? ""}`, { ...e, issue: issue.slug });
+      if (!claimed.has(e.date)) out.push({ ...e, issue: issue.slug });
     }
+    days.forEach((d) => claimed.add(d));
   }
   // Sort by date only; Array.sort is stable, so same-day entries keep the order
   // they were written in (comparing "9:00 AM" / "10:00 AM" as text would be wrong).
-  return [...byKey.values()].sort((a, b) => a.date.localeCompare(b.date));
+  return out.sort((a, b) => a.date.localeCompare(b.date));
 }

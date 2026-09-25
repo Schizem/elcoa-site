@@ -27,6 +27,15 @@ export function formatLongDate(date: string): string {
   });
 }
 
+/** "October 2026" */
+export function formatMonthYear(date: string): string {
+  return toUTC(date).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 /** Today's date in the viewer's local time zone, as "YYYY-MM-DD". */
 export function localToday(): string {
   const d = new Date();

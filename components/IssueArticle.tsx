@@ -4,7 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { Callout, Gallery, Photo } from "@/components/Gallery";
-import { formatLongDate } from "@/lib/dates";
+import { formatMonthYear } from "@/lib/dates";
 import type { Issue } from "@/lib/issues";
 
 const mdxComponents = { Gallery, Photo, Callout };
@@ -35,7 +35,7 @@ export function IssueArticle({ issue, variant }: Props) {
       <header className="issue__header">
         <p className="issue__kicker">
           Elbow Lake Chatter &middot;{" "}
-          <time dateTime={issue.date}>{issue.pdf?.title ?? formatLongDate(issue.date)}</time>
+          <time dateTime={issue.date}>{issue.pdf?.title ?? formatMonthYear(issue.date)}</time>
         </p>
         <Title id={titleId} className="issue__title">
           {variant === "home" ? (

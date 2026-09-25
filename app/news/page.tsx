@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { formatLongDate } from "@/lib/dates";
+import { formatMonthYear } from "@/lib/dates";
 import { getAllIssues } from "@/lib/issues";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function NewsIndexPage() {
             ) : null}
             <div>
               <p className="issue__kicker">
-                <time dateTime={i.date}>{i.pdf?.title ?? formatLongDate(i.date)}</time>
+                <time dateTime={i.date}>{i.pdf?.title ?? formatMonthYear(i.date)}</time>
               </p>
               <h2 className="issue-list__title">
                 <Link href={`/news/${i.slug}/`}>{i.title}</Link>

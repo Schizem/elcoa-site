@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { Callout, Gallery, Photo } from "@/components/Gallery";
 import emergency from "@/content/emergency.json";
-import { formatEventDate } from "@/lib/dates";
+import { formatEventDate, formatMonthYear } from "@/lib/dates";
 import { getIssue } from "@/lib/issues";
 import { getPrintExtras, getPrintSlugs, splitSections, type DirectoryGroup } from "@/lib/print";
 import "./print.css";
@@ -118,6 +118,22 @@ export default async function PrintIssuePage({
   const days = [...new Set(issue.events.map((e) => e.date))];
   const year = issue.date.slice(0, 4);
 
+  const flyer = extras.flyer;
+  const flyerPage = flyer ? (
+    <section className="nl-page-break nl-flyer">
+      <p className="nl-flyer__kicker">{flyer.kicker}</p>
+      <p className="nl-flyer__headline">{flyer.headline}</p>
+      {flyer.label ? <p className="nl-flyer__label">{flyer.label}</p> : null}
+      <p className="nl-flyer__when">{flyer.when}</p>
+      {flyer.lines.map((l, i) => (
+        <p key={i} className={i === 0 ? "nl-flyer__prize" : "nl-flyer__line"}>
+          {l}
+        </p>
+      ))}
+      {flyer.footer ? <p className="nl-flyer__footer">{flyer.footer}</p> : null}
+    </section>
+  ) : null;
+
   return (
     <div className={`nl ${display.variable}`}>
       <p className="nl-screen-note">
@@ -129,7 +145,7 @@ export default async function PrintIssuePage({
         <div className="nl-cover__photo">
           {issue.cover ? <img src={issue.cover.src} alt={issue.cover.alt} /> : null}
           <p className="nl-cover__date">
-            {issue.pdf?.title ?? issue.date}
+            {issue.pdf?.title ?? formatMonthYear(issue.date)}
             {extras.tagline ? <span>{extras.tagline}</span> : null}
           </p>
           <p className="nl-cover__masthead">Elbow Lake Chatter</p>
@@ -149,21 +165,7 @@ export default async function PrintIssuePage({
         </div>
       </section>
 
-      {/* ── Flyer ─────────────────────────────────────────── */}
-      {extras.flyer ? (
-        <section className="nl-page-break nl-flyer">
-          <p className="nl-flyer__kicker">{extras.flyer.kicker}</p>
-          <p className="nl-flyer__headline">{extras.flyer.headline}</p>
-          <p className="nl-flyer__label">The parade is</p>
-          <p className="nl-flyer__when">{extras.flyer.when}</p>
-          {extras.flyer.lines.map((l, i) => (
-            <p key={i} className={i === 0 ? "nl-flyer__prize" : "nl-flyer__line"}>
-              {l}
-            </p>
-          ))}
-          {extras.flyer.footer ? <p className="nl-flyer__footer">{extras.flyer.footer}</p> : null}
-        </section>
-      ) : null}
+      {flyer?.position !== "back" ? flyerPage : null}
 
       {/* ── Community news (text sections, two columns) ──── */}
       <section className="nl-page-break">
@@ -227,6 +229,8 @@ export default async function PrintIssuePage({
           groups={extras.directory}
         />
       ) : null}
+
+      {flyer?.position === "back" ? flyerPage : null}
     </div>
   );
 }
