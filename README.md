@@ -58,5 +58,9 @@ Live at **https://elcoa.org** (repo `Schizem/elcoa-site`).
   | AAAA | `@` | `2606:50c0:8003::153` |
   | CNAME | `www` | `schizem.github.io` |
 
+- **Email:** `@elcoa.org` addresses forward to `elbowlakecoa@gmail.com` through
+  Cloudflare Email Routing (Cloudflare manages the MX, SPF, and DKIM records).
+  Nobody sends mail *as* `@elcoa.org`, so DMARC is set to reject forgeries; see
+  [`dns/elcoa.org-email.zone`](./dns/elcoa.org-email.zone).
 - The site serves from the domain root, so there's no `basePath`.
 - The print edition (`/print/...`) is never built here; see MAINTAINING.md.

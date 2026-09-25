@@ -1,0 +1,28 @@
+; Email records for elcoa.org: anti-spoofing (DMARC).
+;
+; ELCOA receives mail at @elcoa.org through Cloudflare Email Routing, which
+; forwards it to elbowlakecoa@gmail.com. Nobody SENDS mail as @elcoa.org
+; (replies go out from the Gmail address), so any message claiming to be
+; from @elcoa.org is forged. DMARC tells receiving mail servers to reject it.
+;
+; Import in Cloudflare: elcoa.org > DNS > Records > Import and Export >
+; Import DNS records.
+;
+; NOT in this file on purpose: turning on Email Routing (elcoa.org > Email >
+; Email Routing > Enable) makes Cloudflare add these itself, with its own
+; DKIM key. For reference, they look like:
+;   @                   MX   route1.mx.cloudflare.net. (plus route2, route3)
+;   @                   TXT  "v=spf1 include:_spf.mx.cloudflare.net ~all"
+;   cf2024-1._domainkey TXT  "v=DKIM1; h=sha256; k=rsa; p=<Cloudflare's key>"
+;
+; If ELCOA ever sends mail AS @elcoa.org (e.g. a mailbox provider or a
+; mailing-list service), add that provider to SPF and its DKIM key BEFORE
+; sending, or this policy will reject the mail.
+
+$ORIGIN elcoa.org.
+$TTL 3600
+
+; p=reject      reject mail that fails DMARC for elcoa.org
+; sp=reject     same for any subdomain (e.g. www.elcoa.org)
+; adkim/aspf=s  strict alignment: the signing domain must be exactly elcoa.org
+_dmarc  3600    IN  TXT "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s"
