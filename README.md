@@ -42,7 +42,9 @@ Live at **https://elcoa.org** (repo `Schizem/elcoa-site`).
   domain = `elcoa.org`, Enforce HTTPS on. With an Actions deploy, GitHub ignores
   any `CNAME` file; the domain lives in these settings.
 - **DNS** (Cloudflare, zone `elcoa.org`), all set to **DNS only** (grey cloud) so
-  GitHub can issue and renew the HTTPS certificate:
+  GitHub can issue and renew the HTTPS certificate. The same records are in
+  [`dns/elcoa.org.zone`](./dns/elcoa.org.zone), ready for Cloudflare's
+  "Import DNS records":
 
   | Type | Name | Value |
   | --- | --- | --- |

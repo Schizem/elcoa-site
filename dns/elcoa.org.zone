@@ -1,0 +1,30 @@
+; BIND zone file for elcoa.org: points the domain at GitHub Pages.
+;
+; Import in Cloudflare: elcoa.org > DNS > Records > Import and Export >
+; Import DNS records. Leave "Proxy imported DNS records" UNCHECKED.
+; Each record also carries cf_tags=cf-proxied:false so it imports as
+; "DNS only" (grey cloud). GitHub has to reach the domain directly to issue
+; and renew the HTTPS certificate.
+;
+; Delete any existing A, AAAA, or CNAME records on @ or www first, or the
+; import will conflict with them.
+;
+; GitHub Pages addresses: https://docs.github.com/pages (apex domain setup)
+
+$ORIGIN elcoa.org.
+$TTL 3600
+
+; Apex (elcoa.org): GitHub Pages IPv4
+@       3600    IN  A       185.199.108.153 ; cf_tags=cf-proxied:false
+@       3600    IN  A       185.199.109.153 ; cf_tags=cf-proxied:false
+@       3600    IN  A       185.199.110.153 ; cf_tags=cf-proxied:false
+@       3600    IN  A       185.199.111.153 ; cf_tags=cf-proxied:false
+
+; Apex (elcoa.org): GitHub Pages IPv6
+@       3600    IN  AAAA    2606:50c0:8000::153 ; cf_tags=cf-proxied:false
+@       3600    IN  AAAA    2606:50c0:8001::153 ; cf_tags=cf-proxied:false
+@       3600    IN  AAAA    2606:50c0:8002::153 ; cf_tags=cf-proxied:false
+@       3600    IN  AAAA    2606:50c0:8003::153 ; cf_tags=cf-proxied:false
+
+; www.elcoa.org: GitHub redirects it to elcoa.org
+www     3600    IN  CNAME   schizem.github.io. ; cf_tags=cf-proxied:false
