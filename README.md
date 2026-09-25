@@ -44,23 +44,6 @@ Live at **https://elcoa.org** (repo `Schizem/elcoa-site`).
 - **DNS** (Cloudflare, zone `elcoa.org`), all set to **DNS only** (grey cloud) so
   GitHub can issue and renew the HTTPS certificate. The same records are in
   [`dns/elcoa.org.zone`](./dns/elcoa.org.zone), ready for Cloudflare's
-  "Import DNS records":
 
-  | Type | Name | Value |
-  | --- | --- | --- |
-  | A | `@` | `185.199.108.153` |
-  | A | `@` | `185.199.109.153` |
-  | A | `@` | `185.199.110.153` |
-  | A | `@` | `185.199.111.153` |
-  | AAAA | `@` | `2606:50c0:8000::153` |
-  | AAAA | `@` | `2606:50c0:8001::153` |
-  | AAAA | `@` | `2606:50c0:8002::153` |
-  | AAAA | `@` | `2606:50c0:8003::153` |
-  | CNAME | `www` | `schizem.github.io` |
-
-- **Email:** `@elcoa.org` addresses forward to `elbowlakecoa@gmail.com` through
-  Cloudflare Email Routing (Cloudflare manages the MX, SPF, and DKIM records).
-  Nobody sends mail *as* `@elcoa.org`, so DMARC is set to reject forgeries; see
-  [`dns/elcoa.org-email.zone`](./dns/elcoa.org-email.zone).
 - The site serves from the domain root, so there's no `basePath`.
 - The print edition (`/print/...`) is never built here; see MAINTAINING.md.
