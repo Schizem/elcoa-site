@@ -33,8 +33,9 @@ export default function AboutPage() {
       <h2>Board of directors</h2>
       <p>
         Board meetings are open to everyone; see <a href="/events/">Events</a>{" "}
-        for dates. To reach the board, email{" "}
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        for dates. Read the full{" "}
+        <a href="/minutes/">board meeting minutes</a>, word for word. To reach
+        the board, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
 
       <h3>Officers</h3>

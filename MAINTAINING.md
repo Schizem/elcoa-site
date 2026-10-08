@@ -60,6 +60,41 @@ That writes `September 2026 Newsletter-web.pdf` (typically 3&ndash;8 MB). Rename
 to `2026-09-september.pdf` and put that in `public/newsletters/`. The 27 existing
 issues were compressed this way; originals are kept off the repo.
 
+## Add board meeting minutes
+
+Full minutes are always published, word for word. Summaries in an issue are
+only highlights and must link to the full text.
+
+1. Create `content/minutes/<YYYY-MM-DD>.md` (the meeting date):
+
+   ```md
+   ---
+   date: "2026-09-05"
+   issue: "2026-10"          # the newsletter that prints these minutes
+   source: "Secretary's original document (Sally Rouse)."
+   ---
+
+   **ELCOA Board Meeting Minutes from Saturday, September 5, 2026**
+
+   **Location:** Boat Launch
+
+   **Present:** ...
+   ```
+
+2. Copy the secretary's text **exactly**: typos, spelling, and wording stay as
+   written. The only formatting is one paragraph per item and a bold label
+   ("**Treasurer's Report:**"). Work from the secretary's document, not from a
+   retyped copy, and say where the text came from in `source`.
+3. In the issue's web edition, a "Highlights from the ... board meeting"
+   section ends with a link: `[Read the full, official September 5 minutes](/minutes/2026-09-05/)`.
+
+Where they show up automatically:
+
+- `/minutes/` and `/minutes/<date>/` on the website
+- The newsletter reader, under the PDF for the matching `issue`
+- The printed newsletter's minutes pages (same files, so print and web can
+  never disagree)
+
 ## Publish the web edition (home page content)
 
 The home page shows the **latest web edition**: the community news, event

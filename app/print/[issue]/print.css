@@ -453,3 +453,9 @@
     max-width: 100%;
   }
 }
+
+/* The web shows where each set of minutes came from; on paper it would just
+   say "as printed in this newsletter". */
+.nl .minutes__source {
+  display: none;
+}

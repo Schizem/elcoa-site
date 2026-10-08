@@ -1,13 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { Newsletter } from "@/lib/newsletters";
 import styles from "./newsletters.module.css";
+
+/** One meeting's full minutes, already rendered on the server. */
+export interface IssueMinutes {
+  date: string;
+  label: string;
+  content: ReactNode;
+}
 
 interface Props {
   newsletters: Newsletter[];
   /** Slugs that also have a web edition at /news/<slug>/. */
   webEditions?: string[];
+  /** Full board minutes printed in each issue, keyed by issue slug. */
+  minutesByIssue?: Record<string, IssueMinutes[]>;
 }
 
 function groupByYear(items: Newsletter[]) {
@@ -18,7 +27,11 @@ function groupByYear(items: Newsletter[]) {
   }));
 }
 
-export function NewsletterBrowser({ newsletters, webEditions = [] }: Props) {
+export function NewsletterBrowser({
+  newsletters,
+  webEditions = [],
+  minutesByIssue = {},
+}: Props) {
   const groups = useMemo(() => groupByYear(newsletters), [newsletters]);
   const [slug, setSlug] = useState<string>(newsletters[0]?.slug ?? "");
 
@@ -112,6 +125,34 @@ export function NewsletterBrowser({ newsletters, webEditions = [] }: Props) {
           .
         </p>
       </object>
+
+      <section className={styles.minutes} aria-labelledby="minutes-heading">
+        <h2 id="minutes-heading" className={styles.minutesHeading}>
+          Board meeting minutes in {current.title}
+        </h2>
+        {(minutesByIssue[current.slug] ?? []).length ? (
+          <>
+            <p className={styles.minutesNote}>
+              The full, official minutes, word for word as recorded by the
+              secretary.
+            </p>
+            {minutesByIssue[current.slug].map((m) => (
+              <details key={m.date} className={styles.minutesItem} open>
+                <summary>{m.label} board meeting</summary>
+                {m.content}
+                <p>
+                  <a href={`/minutes/${m.date}/`}>Link to these minutes</a>
+                </p>
+              </details>
+            ))}
+          </>
+        ) : (
+          <p className={styles.minutesNote}>
+            This issue&rsquo;s board meeting minutes are printed inside the
+            newsletter above. See all <a href="/minutes/">board meeting minutes</a>.
+          </p>
+        )}
+      </section>
 
       <h2 className={styles.archiveHeading}>All editions</h2>
       <p className={styles.archiveNote}>

@@ -7,6 +7,8 @@ import { Callout, Gallery, Photo } from "@/components/Gallery";
 import emergency from "@/content/emergency.json";
 import { formatEventDate, formatMonthYear } from "@/lib/dates";
 import { getIssue } from "@/lib/issues";
+import { getMinutesForIssue } from "@/lib/minutes";
+import { MinutesText } from "@/components/MinutesText";
 import { getPrintExtras, getPrintSlugs, splitSections, type DirectoryGroup } from "@/lib/print";
 import "./print.css";
 
@@ -110,6 +112,7 @@ export default async function PrintIssuePage({
   const issue = getIssue(slug);
   if (!issue) notFound();
   const extras = getPrintExtras(slug);
+  const minutes = getMinutesForIssue(slug);
 
   const { intro, sections } = splitSections(issue.body);
   const kept = sections.filter((s) => !extras.omitSections.includes(s.heading));
@@ -214,11 +217,16 @@ export default async function PrintIssuePage({
         </section>
       ))}
 
-      {/* ── Minutes ──────────────────────────────────────── */}
-      {extras.minutes ? (
+      {/* ── Minutes: the same official text the website shows ── */}
+      {minutes.length ? (
         <section className="nl-page-break nl-minutes">
           <Bar>{extras.minutesTitle ?? "Board Meeting Minutes"}</Bar>
-          <MDXRemote source={extras.minutes} options={mdxOptions} />
+          {minutes.map((m, i) => (
+            <div key={m.date}>
+              {i > 0 ? <hr /> : null}
+              <MinutesText minutes={m} />
+            </div>
+          ))}
         </section>
       ) : null}
 

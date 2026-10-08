@@ -446,6 +446,17 @@ h4 {
   color: var(--fg-muted);
 }
 
+/* Official minutes text */
+.minutes p + p {
+  margin-top: 0.75rem;
+}
+.minutes__source {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
 /* Board roster (About page) */
 .roster {
   margin: 0.5rem 0 0;

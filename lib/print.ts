@@ -5,7 +5,7 @@ import matter from "gray-matter";
 /**
  * Print-only extras for the newsletter PDF. These live OUTSIDE the repo in
  * ../newsletter-print/<slug>/ because they carry things we don't publish on the
- * web (full minutes, the contact directory with personal phones and emails).
+ * web (the contact directory with personal phones and emails).
  *
  * If the folder is missing (e.g. on the CI build server), there are no print
  * pages at all.
@@ -45,9 +45,9 @@ export interface PrintExtras {
   /** Web-edition "##" sections to leave out of the PDF (e.g. a condensed
    *  minutes summary when the full minutes are included). */
   omitSections: string[];
+  /** Bar title over the minutes. The minutes themselves come from
+   *  content/minutes (see lib/minutes.ts), shared with the website. */
   minutesTitle?: string;
-  /** Full minutes, Markdown. */
-  minutes?: string;
   directoryTitle?: string;
   directory: DirectoryGroup[];
   /** PDFs (paths under public/) appended after the generated pages. */
@@ -65,7 +65,7 @@ export function getPrintSlugs(): string[] {
 
 export function getPrintExtras(slug: string): PrintExtras {
   const dir = path.join(PRINT_ROOT, slug);
-  const { data, content } = matter(fs.readFileSync(path.join(dir, "print.mdx"), "utf8"));
+  const { data } = matter(fs.readFileSync(path.join(dir, "print.mdx"), "utf8"));
   const dirFile = path.join(dir, "directory.json");
   const directory: DirectoryGroup[] = fs.existsSync(dirFile)
     ? JSON.parse(fs.readFileSync(dirFile, "utf8"))
@@ -75,7 +75,6 @@ export function getPrintExtras(slug: string): PrintExtras {
     flyer: data.flyer,
     omitSections: data.omitSections ?? [],
     minutesTitle: data.minutesTitle,
-    minutes: content.trim() || undefined,
     directoryTitle: data.directoryTitle,
     directory,
     appendPdfs: data.appendPdfs ?? [],
