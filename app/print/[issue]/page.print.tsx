@@ -187,7 +187,12 @@ export default async function PrintIssuePage({
                         .map((e, i) => (
                           <li key={i}>
                             {e.title}
-                            {e.time ? `, ${e.time}` : ""}
+                            {/* "Board meeting, 10:00 AM" but "Hayrides (after 3:30 PM)" */}
+                            {!e.time
+                              ? ""
+                              : /^\d/.test(e.time)
+                                ? `, ${e.time}`
+                                : ` (${e.time.charAt(0).toLowerCase()}${e.time.slice(1)})`}
                           </li>
                         ))}
                     </ul>

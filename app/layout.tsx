@@ -39,9 +39,6 @@ export default function RootLayout({
           <header className="site-header">
             <div className="site-header__inner">
               <Link href="/" className="brand">
-                <span className="brand__mark" aria-hidden="true">
-                  ~
-                </span>
                 <span>
                   Elbow Lake <span className="brand__sub">ELCOA</span>
                 </span>

@@ -54,9 +54,6 @@
 .brand:hover {
   color: var(--accent);
 }
-.brand__mark {
-  font-size: 1.35rem;
-}
 .brand__sub {
   font-weight: 500;
   font-size: 0.85rem;
