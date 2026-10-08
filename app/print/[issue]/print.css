@@ -349,6 +349,17 @@
   font-size: 9.5pt;
   line-height: 1.35;
 }
+/* A line that is only a bold heading (e.g. "ELCOA Meeting Minutes from ...")
+   must stay with the text that follows it. */
+.nl-minutes p:has(> strong:only-child) {
+  break-after: avoid;
+}
+.nl-minutes hr {
+  border: none;
+  border-top: 1px solid #999;
+  margin: 0.18in 0;
+  break-after: avoid;
+}
 
 /* ── Contact directory ───────────────────────────────────── */
 

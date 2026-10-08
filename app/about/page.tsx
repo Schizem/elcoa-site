@@ -59,7 +59,16 @@ export default function AboutPage() {
         {board.committees.map((c) => (
           <div key={c.role} className="roster__row">
             <dt>{c.role}</dt>
-            <dd>{c.names.join(" & ")}</dd>
+            <dd>
+              {"open" in c && c.open ? (
+                <>
+                  Chair needed.{" "}
+                  <a href={`mailto:${CONTACT_EMAIL}`}>Volunteer</a>
+                </>
+              ) : (
+                c.names.join(" & ")
+              )}
+            </dd>
           </div>
         ))}
       </dl>

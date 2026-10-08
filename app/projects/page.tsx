@@ -30,9 +30,9 @@ export default function ProjectsPage() {
       </p>
       <ul>
         <li>
-          <strong>Fall 2026 (planned):</strong> fish are in this year&rsquo;s
-          budget. As of the August 2 board meeting the fish fund stood at $1,900,
-          and Frank is getting pricing. Donations are still welcome.
+          <strong>Fall 2026:</strong> Frank placed a $1,900 order (reported at
+          the September 5 board meeting). Fish go in once the water cools.
+          Donations are still welcome.
         </li>
         <li>
           <strong>Fall 2024:</strong> nearly 1,000 crappie and walleye, paid for
