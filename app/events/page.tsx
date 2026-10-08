@@ -23,7 +23,7 @@ export default function EventsPage() {
         from the latest issue of the Chatter.
       </p>
 
-      <section className="card" aria-labelledby="upcoming">
+      <section className="card events-card" aria-labelledby="upcoming">
         <h2 id="upcoming" className="side-title">
           Upcoming
         </h2>
