@@ -30,9 +30,11 @@ export default function ProjectsPage() {
       </p>
       <ul>
         <li>
-          <strong>Fall 2026:</strong> Frank placed a $1,900 order (reported at
-          the September 5 board meeting). Fish go in once the water cools.
-          Donations are still welcome.
+          <strong>Fall 2026:</strong> Frank has placed the order. The September
+          5 board minutes record it as &ldquo;an order for 1900 fish&rdquo;;
+          details to come once Frank confirms. The fish fund stood at $1,900 as
+          of the August 2 meeting, not counting donations. Donations are still
+          welcome.
         </li>
         <li>
           <strong>Fall 2024:</strong> nearly 1,000 crappie and walleye, paid for
