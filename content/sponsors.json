@@ -1,7 +1,7 @@
 {
-  "events": [
+  "groups": [
     {
-      "event": "2026 Hayride & Chili Cook-Off",
+      "title": "Local supporters",
       "sponsors": [
         {
           "name": "Kelly's Tree Service",
@@ -12,7 +12,12 @@
           "name": "Express Rental",
           "gift": "donating equipment rentals.",
           "returning": true
-        },
+        }
+      ]
+    },
+    {
+      "title": "2026 Hayride & Chili Cook-Off",
+      "sponsors": [
         { "name": "Hunter's Paradise" },
         { "name": "Action Asphalt" },
         { "name": "AKA Electric" },

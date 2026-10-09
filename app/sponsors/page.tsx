@@ -20,9 +20,9 @@ export default function SponsorsPage() {
         appreciate it.
       </p>
 
-      {sponsors.events.map((group) => (
-        <section key={group.event}>
-          <h2>{group.event}</h2>
+      {sponsors.groups.map((group) => (
+        <section key={group.title}>
+          <h2>{group.title}</h2>
           <ul className="sponsor-list">
             {group.sponsors.map((s) => (
               <li key={s.name}>

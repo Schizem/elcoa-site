@@ -11,7 +11,7 @@ const BUILT_ON = new Date().toISOString().slice(0, 10);
 export default function HomePage() {
   const latest = getLatestIssue();
   const events = getAllEvents().filter((e) => e.date >= BUILT_ON);
-  const currentSponsors = sponsors.events[0];
+  const sponsorNames = sponsors.groups.flatMap((g) => g.sponsors.map((s) => s.name));
 
   return (
     <>
@@ -62,15 +62,14 @@ export default function HomePage() {
             </p>
           </section>
 
-          {currentSponsors ? (
+          {sponsorNames.length ? (
             <section className="card" aria-labelledby="sponsors">
               <h2 id="sponsors" className="side-title">
                 Thank you, sponsors
               </h2>
-              <p>{currentSponsors.event}:</p>
               <ul className="side-list">
-                {currentSponsors.sponsors.map((s) => (
-                  <li key={s.name}>{s.name}</li>
+                {sponsorNames.map((name) => (
+                  <li key={name}>{name}</li>
                 ))}
               </ul>
               <p className="side-link">
