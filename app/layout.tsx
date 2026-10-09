@@ -60,6 +60,8 @@ export default function RootLayout({
               <span>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                 {" · "}
+                <Link href="/sponsors/">Our sponsors</Link>
+                {" · "}
                 <a
                   href="https://www.facebook.com/groups/206299797470224"
                   target="_blank"

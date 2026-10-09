@@ -3,6 +3,7 @@ import { IssueArticle } from "@/components/IssueArticle";
 import { LakeMapBanner } from "@/components/LakeMapBanner";
 import { UpcomingEvents } from "@/components/UpcomingEvents";
 import { getAllEvents, getLatestIssue } from "@/lib/issues";
+import sponsors from "@/content/sponsors.json";
 
 // Evaluated at build time; the client refines "upcoming" to the viewer's today.
 const BUILT_ON = new Date().toISOString().slice(0, 10);
@@ -10,6 +11,7 @@ const BUILT_ON = new Date().toISOString().slice(0, 10);
 export default function HomePage() {
   const latest = getLatestIssue();
   const events = getAllEvents().filter((e) => e.date >= BUILT_ON);
+  const currentSponsors = sponsors.events[0];
 
   return (
     <>
@@ -59,6 +61,23 @@ export default function HomePage() {
               <Link href="/membership/">Membership &amp; dues &rarr;</Link>
             </p>
           </section>
+
+          {currentSponsors ? (
+            <section className="card" aria-labelledby="sponsors">
+              <h2 id="sponsors" className="side-title">
+                Thank you, sponsors
+              </h2>
+              <p>{currentSponsors.event}:</p>
+              <ul className="side-list">
+                {currentSponsors.sponsors.map((s) => (
+                  <li key={s.name}>{s.name}</li>
+                ))}
+              </ul>
+              <p className="side-link">
+                <Link href="/sponsors/">Our sponsors &rarr;</Link>
+              </p>
+            </section>
+          ) : null}
 
           <section className="card" aria-labelledby="know">
             <h2 id="know" className="side-title">

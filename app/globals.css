@@ -316,6 +316,9 @@ h4 {
 .side-list li + li {
   margin-top: 0.35rem;
 }
+.sponsor-list li + li {
+  margin-top: 0.5rem;
+}
 .home-more {
   margin-top: 2rem;
   font-weight: 600;
