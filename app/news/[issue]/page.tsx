@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { IssueArticle } from "@/components/IssueArticle";
+import { formatMonthYear } from "@/lib/dates";
 import { getAllIssues, getIssue } from "@/lib/issues";
 
 // Static export: only the issues that exist at build time get a page.
@@ -19,7 +20,7 @@ export async function generateMetadata({
   const issue = getIssue((await params).issue);
   if (!issue) return {};
   return {
-    title: `${issue.title} (${issue.pdf?.title ?? issue.date})`,
+    title: `${issue.title} (${issue.pdf?.title ?? formatMonthYear(issue.date)})`,
     description: issue.summary,
   };
 }
